@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Let's build with HumAgi</title>
+<meta name="description" content="Use AI for a better life. Five ways one person can build things that used to need a company.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..800,0..100,0..1&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --leafwash:#E9EEE1;
+    --leafwash-deep:#DDE5D3;
+    --ink:#1B2E24;
+    --ink-soft:#4A6153;
+    --verdigris:#497C63;
+    --marigold:#E3A11F;
+    --gut:clamp(1.25rem,5vw,3.5rem);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--leafwash);
+    color:var(--ink);
+    font-family:"Karla",system-ui,sans-serif;
+    font-size:clamp(1rem,0.95rem + 0.3vw,1.125rem);
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(72rem,100% - var(--gut)*2);margin-inline:auto}
+  h1,h2,h3{
+    font-family:"Fraunces",Georgia,serif;
+    font-variation-settings:"SOFT" 30,"WONK" 1;
+    font-weight:500;
+    line-height:1.1;
+    letter-spacing:-0.015em;
+    margin:0;
+    text-wrap:balance;
+  }
+  a{color:inherit}
+  p{margin:0}
+
+  .masthead{
+    padding-block:1.6rem;
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    flex-wrap:wrap;
+  }
+  .mark{
+    font-family:"Fraunces",Georgia,serif;
+    font-variation-settings:"SOFT" 40,"WONK" 1;
+    font-size:1.3rem;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    text-decoration:none;
+  }
+  .nav{display:flex;gap:clamp(1rem,3vw,2rem);font-size:0.9rem}
+  .nav a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding-block:0.25rem;
+    border-bottom:1.5px solid transparent;
+    transition:color .18s ease,border-color .18s ease;
+  }
+  .nav a:hover,.nav a:focus-visible{color:var(--ink);border-color:var(--marigold)}
+
+  .hero{position:relative;padding-block:clamp(2.5rem,8vw,6rem) clamp(3rem,8vw,6rem);overflow:hidden}
+  .hero-grid{display:grid;gap:clamp(2rem,5vw,4rem);grid-template-columns:1fr;align-items:center}
+  @media (min-width:58rem){.hero-grid{grid-template-columns:1.15fr 0.85fr}}
+  h1{
+    font-variation-settings:"SOFT" 60,"WONK" 1;
+    font-weight:600;
+    font-size:clamp(3rem,10vw,6.5rem);
+    line-height:0.94;
+    letter-spacing:-0.035em;
+    margin-bottom:1.1rem;
+  }
+  .subhead{
+    font-family:"Fraunces",Georgia,serif;
+    font-variation-settings:"SOFT" 25,"WONK" 0;
+    font-size:clamp(1.35rem,3.6vw,2.1rem);
+    line-height:1.24;
+    color:var(--verdigris);
+    margin-bottom:1.6rem;
+  }
+  .positioning{max-width:38ch;color:var(--ink-soft)}
+  .hero-art{width:100%;height:auto;max-width:26rem;justify-self:center}
+
+  .ill{fill:none;stroke:var(--verdigris);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .ill-warm{stroke:var(--marigold)}
+  .ill-fill{fill:var(--marigold);stroke:none}
+
+  section{padding-block:clamp(3rem,7vw,5.5rem)}
+  .rule{border:0;border-top:1px solid rgba(27,46,36,.16);margin:0}
+  .eyebrow{font-size:0.82rem;color:var(--verdigris);margin-bottom:1rem}
+  .h2{font-size:clamp(1.8rem,4.2vw,2.9rem);margin-bottom:1.1rem}
+  .intro{max-width:46ch;color:var(--ink-soft)}
+
+  .ways{display:grid;gap:clamp(2rem,4vw,3rem);grid-template-columns:1fr;margin-top:3rem}
+  @media (min-width:44rem){.ways{grid-template-columns:repeat(2,1fr)}}
+  @media (min-width:70rem){.ways{grid-template-columns:repeat(3,1fr)}}
+  .way svg{width:3.4rem;height:3.4rem;margin-bottom:1.1rem;display:block}
+  .way h3{font-size:1.3rem;margin-bottom:0.6rem}
+  .way p{color:var(--ink-soft);font-size:0.99rem;max-width:36ch}
+
+  .grid{
+    display:grid;
+    gap:1px;
+    background:rgba(27,46,36,.16);
+    border:1px solid rgba(27,46,36,.16);
+    grid-template-columns:1fr;
+    margin-top:2.5rem;
+  }
+  @media (min-width:44rem){.grid{grid-template-columns:repeat(2,1fr)}}
+  .card{
+    background:var(--leafwash);
+    padding:clamp(1.4rem,3vw,2rem);
+    display:flex;
+    flex-direction:column;
+    gap:0.9rem;
+    text-decoration:none;
+    transition:background .2s ease;
+  }
+  .card:hover,.card:focus-visible{background:var(--leafwash-deep)}
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+  }
+  .card h3{font-size:1.4rem}
+  .card > p{color:var(--ink-soft);font-size:0.96rem;max-width:40ch}
+  .split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem;
+    margin-top:auto;
+    padding-top:1rem;
+    border-top:1px solid rgba(27,46,36,.14);
+    font-size:0.87rem;
+  }
+  .split dt{color:var(--verdigris);margin-bottom:0.3rem}
+  .split .human dt{color:var(--marigold)}
+  .split dd{margin:0;color:var(--ink)}
+
+  .archive{
+    border:1px solid rgba(27,46,36,.2);
+    background:var(--leafwash-deep);
+    padding:clamp(2rem,5vw,3.5rem);
+    margin-top:2.5rem;
+    display:grid;
+    gap:2rem;
+    grid-template-columns:1fr;
+    align-items:center;
+  }
+  @media (min-width:52rem){.archive{grid-template-columns:1fr auto}}
+  .archive h3{font-size:clamp(1.35rem,3vw,1.9rem);margin-bottom:0.8rem}
+  .archive p{color:var(--ink-soft);max-width:42ch;margin-bottom:1.2rem}
+  .chips{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .chip{
+    border:1px solid var(--verdigris);
+    color:var(--verdigris);
+    border-radius:999px;
+    padding:0.28rem 0.8rem;
+    font-size:0.83rem;
+  }
+  .archive svg{width:8rem;height:8rem;justify-self:center}
+
+  .closing{background:var(--ink);color:var(--leafwash);margin-top:clamp(3rem,7vw,5rem)}
+  .closing h2{color:var(--leafwash);font-size:clamp(1.8rem,4.2vw,2.8rem);max-width:18ch;margin-bottom:1.2rem}
+  .closing p{color:rgba(233,238,225,.72);max-width:42ch;margin-bottom:1.9rem}
+  .cta{
+    display:inline-block;
+    background:var(--marigold);
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:600;
+    padding:0.85rem 1.6rem;
+    border-radius:2px;
+    transition:transform .18s ease,background .18s ease;
+  }
+  .cta:hover,.cta:focus-visible{background:#F0B437;transform:translateY(-2px)}
+
+  footer{
+    background:var(--ink);
+    color:rgba(233,238,225,.6);
+    font-size:0.86rem;
+    padding-block:2rem 2.5rem;
+  }
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  footer a{color:rgba(233,238,225,.82)}
+
+  :focus-visible{outline:2.5px solid var(--marigold);outline-offset:3px}
+  .skip{position:absolute;left:-9999px;background:var(--marigold);color:var(--ink);padding:0.6rem 1rem;z-index:10}
+  .skip:focus{left:1rem;top:1rem}
+
+  @media (prefers-reduced-motion:no-preference){
+    h1{animation:settle .95s cubic-bezier(.2,.7,.3,1) both}
+    .subhead{animation:settle .95s cubic-bezier(.2,.7,.3,1) .14s both}
+    .positioning{animation:settle .95s cubic-bezier(.2,.7,.3,1) .26s both}
+    .hero-art{animation:grow 1.4s cubic-bezier(.2,.7,.3,1) .2s both}
+  }
+  @keyframes settle{from{opacity:0;transform:translateY(.7rem)}to{opacity:1;transform:none}}
+  @keyframes grow{from{opacity:0;transform:translateY(1.5rem) scale(.96)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="wrap">
+  <header class="masthead">
+    <a class="mark" href="#">HumAgi</a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#ways">Five ways</a>
+      <a href="#work">Work</a>
+      <a href="#archive">Archive</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+</div>
+
+<main id="main">
+
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Let's build with HumAgi</h1>
+        <p class="subhead">Use AI for a better life.</p>
+        <p class="positioning">Machines are good at patterns. People are good at meaning. Both work together for humanity's benefit.</p>
+      </div>
+
+      <svg class="hero-art" viewBox="0 0 320 260" aria-hidden="true">
+        <circle class="ill ill-warm" cx="248" cy="60" r="32"/>
+        <g class="ill ill-warm">
+          <path d="M248 14v-10M296 60h10M282 26l7-7M282 94l7 7"/>
+        </g>
+        <path class="ill" d="M96 240V126"/>
+        <path class="ill" d="M96 170c0-30-22-46-52-46 0 30 22 46 52 46z"/>
+        <path class="ill" d="M96 198c0-30 22-46 52-46 0 30-22 46-52 46z"/>
+        <path class="ill" d="M96 134c0-22 16-34 38-34 0 22-16 34-38 34z"/>
+        <path class="ill" d="M20 240h280"/>
+        <g class="ill">
+          <rect x="180" y="172" width="88" height="68" rx="4"/>
+          <path d="M180 192h88M194 182h6M208 182h6"/>
+          <path d="M200 214h48M200 226h30"/>
+        </g>
+        <circle class="ill-fill" cx="96" cy="126" r="5"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <section id="ways">
+    <div class="wrap">
+      <p class="eyebrow">Five ways</p>
+      <h2 class="h2">Things one person can now build alone.</h2>
+      <p class="intro">Each of these used to need a team, a budget, or somebody's permission. None of them do now.</p>
+
+      <div class="ways">
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="7" y="9" width="34" height="26" rx="3"/>
+            <path d="M7 17h34M13 13h3M20 13h3"/>
+            <path d="M18 41h12M24 35v6"/>
+            <circle cx="24" cy="26" r="5"/>
+          </svg>
+          <h3>Software for one user</h3>
+          <p>Nobody funds an app with a market of one. So build it yourself. A tracker shaped like your workflow, a script watching one page.</p>
+        </div>
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M10 38V17c0-4 3-7 7-7h6v28"/>
+            <path d="M38 38V17c0-4-3-7-7-7h-6"/>
+            <path d="M6 38h36M24 10V6"/>
+            <circle cx="24" cy="24" r="4"/>
+          </svg>
+          <h3>Domain knowledge plus execution</h3>
+          <p>Ten years in an industry teaches you which process is broken. Now you can fix it yourself, without pitching someone who won't get it.</p>
+        </div>
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 6l16 9v18l-16 9-16-9V15z"/>
+            <path d="M24 6v18M24 24l16-9M24 24L8 15"/>
+            <circle cx="24" cy="24" r="3"/>
+          </svg>
+          <h3>Physical prototyping</h3>
+          <p>CAD, simulation, firmware and datasheets used to be four specialists. One person can go from idea to a file a factory can run.</p>
+        </div>
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M8 10h13c2 0 3 1 3 3v25c0-2-1-3-3-3H8z"/>
+            <path d="M40 10H27c-2 0-3 1-3 3v25c0-2 1-3 3-3h13z"/>
+            <path d="M30 18h6M30 24h6M12 18h6"/>
+          </svg>
+          <h3>Independent research</h3>
+          <p>Read across thousands of papers. Test a hypothesis with no institution behind you. Rare disease parent groups already found real things this way.</p>
+        </div>
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="6" y="14" width="26" height="20" rx="3"/>
+            <path d="M32 22l10-6v16l-10-6z"/>
+            <path d="M13 40h16"/>
+            <path d="M19 24l6 3-6 3z"/>
+          </svg>
+          <h3>One-person media</h3>
+          <p>Write, direct, score, cut, distribute. Formats that needed a crew now need one person with taste and stamina.</p>
+        </div>
+
+        <div class="way">
+          <svg class="ill" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 42V22"/>
+            <path d="M24 30c0-9-7-14-16-14 0 9 7 14 16 14z"/>
+            <path d="M24 34c0-9 7-14 16-14 0 9-7 14-16 14z"/>
+            <path d="M10 42h28"/>
+          </svg>
+          <h3>Whatever you add next</h3>
+          <p>The list keeps growing. Every month somebody does a thing that needed a company last year.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="rule"></div>
+
+  <section id="work">
+    <div class="wrap">
+      <p class="eyebrow">Work</p>
+      <h2 class="h2">Things I built this way.</h2>
+      <p class="intro">Each one shows what the machine did and what I did.</p>
+
+      <div class="grid">
+
+        <a class="card" href="#">
+          <div class="card-top"><span>Software for one user</span><span>2026</span></div>
+          <h3>Placeholder project one</h3>
+          <p>One sentence on what it does and who it is for.</p>
+          <dl class="split">
+            <div><dt>Machine</dt><dd>Pattern across 40 years of records</dd></div>
+            <div class="human"><dt>Human</dt><dd>Knowing which patterns mattered</dd></div>
+          </dl>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top"><span>Independent research</span><span>2026</span></div>
+          <h3>Placeholder project two</h3>
+          <p>One sentence on what it does and who it is for.</p>
+          <dl class="split">
+            <div><dt>Machine</dt><dd>Read 2,000 papers in a week</dd></div>
+            <div class="human"><dt>Human</dt><dd>Knowing the question to ask</dd></div>
+          </dl>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top"><span>Physical prototyping</span><span>2025</span></div>
+          <h3>Placeholder project three</h3>
+          <p>One sentence on what it does and who it is for.</p>
+          <dl class="split">
+            <div><dt>Machine</dt><dd>Simulation, fast enough to iterate</dd></div>
+            <div class="human"><dt>Human</dt><dd>Deciding what counted as good</dd></div>
+          </dl>
+        </a>
+
+        <a class="card" href="#">
+          <div class="card-top"><span>One-person media</span><span>2025</span></div>
+          <h3>Placeholder project four</h3>
+          <p>One sentence on what it does and who it is for.</p>
+          <dl class="split">
+            <div><dt>Machine</dt><dd>Draft edits and a rough score</dd></div>
+            <div class="human"><dt>Human</dt><dd>Every decision that mattered</dd></div>
+          </dl>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="archive">
+    <div class="wrap">
+      <p class="eyebrow">Archive</p>
+      <h2 class="h2">How each one was made.</h2>
+
+      <div class="archive">
+        <div>
+          <h3>Nothing filed here yet.</h3>
+          <p>Blueprints, diagrams and the versions that failed. Finished work is nice to look at. The messy middle is where you learn something.</p>
+          <div class="chips">
+            <span class="chip">Blueprints</span>
+            <span class="chip">Diagrams</span>
+            <span class="chip">Failed versions</span>
+            <span class="chip">Notes</span>
+          </div>
+        </div>
+        <svg class="ill" viewBox="0 0 100 100" aria-hidden="true">
+          <rect x="14" y="20" width="52" height="66" rx="3"/>
+          <rect x="26" y="12" width="52" height="66" rx="3"/>
+          <path d="M38 30h28M38 42h28M38 54h16"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing" id="contact">
+    <div class="wrap">
+      <h2>Built something this way? Show me.</h2>
+      <p>What you made, what it fixes, and where the machine got it wrong. That last bit is my favourite part.</p>
+      <a class="cta" href="mailto:hello@example.com">Send me your work</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>HumAgi</span>
+    <span><a href="#">Instagram</a> &nbsp; <a href="#">LinkedIn</a> &nbsp; <a href="#">Email</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
